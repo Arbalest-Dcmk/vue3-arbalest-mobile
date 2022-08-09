@@ -1,22 +1,12 @@
 import { createApp } from 'vue'
 import router from '@/router'
-import store from '@/store'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import 'normalize.css'
 import 'amfe-flexible'
+import 'vant/lib/index.css'
 import '@/style/index.scss'
 import 'virtual:svg-icons-register'
-import { Button, Tab, Tabs, Lazyload, Skeleton, Image, Empty, Loading } from 'vant'
+import '@/router/guide'
 
-createApp(App)
-    .use(store)
-    .use(router)
-    .use(Button)
-    .use(Skeleton)
-    .use(Tabs)
-    .use(Empty)
-    .use(Loading)
-    .use(Image)
-    .use(Tab)
-    .use(Lazyload)
-    .mount('#app')
+createApp(App).use(createPinia()).use(router).mount('#app')

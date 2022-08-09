@@ -1,11 +1,7 @@
 <template>
-    <div class="app">
-        <router-view v-slot="{ Component }">
-            <keep-alive :include="['Daily']">
-                <component :is="Component" />
-            </keep-alive>
-        </router-view>
-    </div>
+    <van-config-provider>
+        <router-view />
+    </van-config-provider>
 </template>
 
 <script lang="ts">
@@ -14,4 +10,8 @@ export default defineComponent({
     name: 'App'
 })
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.van-config-provider {
+    height: 100%;
+}
+</style>

@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
-import store from '@/store'
 import config, { TOKEN_KEY } from '@/config'
-import { storage, camelToSnake, snakeToCamel } from '@/utils'
+import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
 import { Toast, Dialog } from 'vant'
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 
 // 取消请求
 const cancelerMap = new Map<string, Canceler>()
@@ -22,7 +23,7 @@ const removeAllCanceler = () => {
 const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
-        store.dispatch('user/logout')
+        userStore.logout()
         Dialog.alert({
             message: '登录失效，请重新登录'
         }).then(() => {
@@ -63,7 +64,7 @@ const request = (cfg: RequestExtraConfig) => {
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
-                    [TOKEN_KEY]: storage.get('access_token')
+                    [TOKEN_KEY]: userStore.token
                 }
             }
             if (extraConfig.paramsTransform) {

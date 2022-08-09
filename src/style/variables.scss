@@ -1,33 +1,22 @@
 // color
-$primary:#1E3754;
-$pageBg:#FAFAFA;
-$fontColor:#1E3754;
-$subColor:#8EA0C0;
-$red:#E91F12;
-$secondColor:#FF8A00;
-$fade:#F7FAFF;
-$fadeBorder:#e8f0ff;
-// font-weight
-$bold:bold;
-$semiBold:600;
+$primary: #1E3754;
+$pageBg: #FAFAFA;
+$fontColor: #1E3754;
+$subColor: #8EA0C0;
+$fade: #F7FAFF;
 
-// 头部tabs
-$titleActive:$fontColor;
-$titleInactive:$subColor;
-$lineColor:$red;
-
-// 页面内容区左右留白
-$pageInterval:15px;
+// 左右留白
+$pageInterval: 15px;
 
 // mixin
-@mixin box{
-    box-shadow: 0px 3px 4px 0px rgba(14,0,0,0.05);
+@mixin box {
+    box-shadow: 0px 3px 4px 0px rgba(14, 0, 0, 0.05);
     border-radius: 5px;
-    background:#fff;
+    background: #fff;
 }
 
 // vant全局变量
-:root{
-    --van-tabs-nav-background-color:transparent;
-    --van-skeleton-avatar-size:50px;
+:root {
+    --van-skeleton-avatar-size: 50px;
+    --van-button-normal-font-size: 14px;
 }

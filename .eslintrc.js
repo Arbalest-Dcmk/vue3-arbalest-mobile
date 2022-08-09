@@ -8,18 +8,17 @@ module.exports = {
         'plugin:vue/vue3-recommended',
         'plugin:prettier/recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended'
     ],
     parser: 'vue-eslint-parser',
     parserOptions: {
         parser: '@typescript-eslint/parser',
         ecmaVersion: 'latest',
-        parser: '@typescript-eslint/parser',
         sourceType: 'module'
     },
     rules: {
         'no-console': 'off',
-        'no-debugger': 'off',
+        'no-debugger': 'error',
+        eqeqeq: 'error',
         indent: ['error', 4, { SwitchCase: 1 }],
         'vue/script-setup-uses-vars': 'error',
         'vue/multi-word-component-names': 'off',
@@ -28,7 +27,7 @@ module.exports = {
             'warn',
             {
                 varsIgnorePattern: 'props',
-                argsIgnorePattern: 'none'
+                argsIgnorePattern: '^_'
             }
         ],
         '@typescript-eslint/no-explicit-any': 'off',
