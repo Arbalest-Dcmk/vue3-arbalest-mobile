@@ -7,7 +7,7 @@ module.exports = {
     extends: [
         'plugin:vue/vue3-recommended',
         'plugin:prettier/recommended',
-        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended'
     ],
     parser: 'vue-eslint-parser',
     parserOptions: {
@@ -23,6 +23,12 @@ module.exports = {
         'vue/script-setup-uses-vars': 'error',
         'vue/multi-word-component-names': 'off',
         'vue/v-on-event-hyphenation': 'off',
+        'vue/no-unused-vars': [
+            'error',
+            {
+                ignorePattern: '^_'
+            }
+        ],
         '@typescript-eslint/no-unused-vars': [
             'warn',
             {
