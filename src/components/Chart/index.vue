@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts" setup name="Chart">
-import * as echarts from 'echarts'
+import echarts from './echarts'
+
 import { debounce } from 'lodash'
 
 const props = defineProps({
