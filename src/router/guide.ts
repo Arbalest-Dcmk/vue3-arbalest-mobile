@@ -30,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
             }
         }
     } else {
-        if (whiteList.indexOf(to.path) !== -1) {
+        if (whiteList.includes(to.path)) {
             next()
         } else {
             next(`/login?redirectUrl=${to.path}`)

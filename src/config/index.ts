@@ -11,6 +11,7 @@ const envConfig = {
     }
 }
 export const TOKEN_KEY = 'Authorization'
+export const TITLE = 'vue3 mobile'
 
 export default {
     ...envConfig[env]

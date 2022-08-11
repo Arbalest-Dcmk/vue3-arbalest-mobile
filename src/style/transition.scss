@@ -1,0 +1,43 @@
+// transition
+
+// fade
+.fade {
+
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
+
+    &-enter-to,
+    &-leave-form {
+        opacity: 1;
+    }
+
+    &-enter-active,
+    &-leave-active {
+        transition: all 0.3s;
+    }
+}
+
+// layout
+.layout {
+
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
+
+    &-enter-to,
+    &-leave-form {
+        opacity: 1;
+    }
+
+    &-leave-to {
+        transform: translateX(15px);
+    }
+
+    &-enter-active,
+    &-leave-active {
+        transition: all 0.3s ease-in-out;
+    }
+}

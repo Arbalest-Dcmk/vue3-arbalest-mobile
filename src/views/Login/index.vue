@@ -4,15 +4,18 @@
             <div class="title">Login</div>
             <van-form ref="formRef" :show-error-message="false" validate-first>
                 <van-field
-                    v-model="formData.username"
+                    v-model.trim="formData.username"
                     placeholder="输入账号"
                     label="账号"
+                    autocomplete="off"
                     :rules="rules.username"
                 />
                 <van-field
-                    v-model="formData.password"
+                    v-model.trim="formData.password"
                     placeholder="输入密码"
                     label="密码"
+                    type="password"
+                    autocomplete="off"
                     :rules="rules.password"
                 />
             </van-form>
@@ -22,8 +25,8 @@
 </template>
 
 <script lang="ts" setup name="Login">
-import { Toast } from 'vant'
 import { useUserStore } from '@/store/user'
+import { useValidate } from '@/hooks/useValidate'
 
 const userStore = useUserStore()
 const route = useRoute()
@@ -38,25 +41,23 @@ const formData = reactive({
 })
 const rules = {
     username: [{ required: true, message: '请输入账号' }],
-    password: [{ required: true, message: '请输入密码' }]
+    password: [
+        { required: true, message: '请输入密码' },
+        {
+            pattern: /^[a-zA-Z0-9]{2,6}$/,
+            message: '密码格式为2-6位大小写字母及数字'
+        }
+    ]
 }
 
-const doValidate = async () => {
-    try {
-        await formRef.value.validate()
-        return true
-    } catch (err: any) {
-        const { message } = err[0] ?? {}
-        message && Toast(message)
-    }
-}
+const { doValidate } = useValidate(formRef)
 
 const doLogin = async () => {
     try {
         loading.value = true
         await userStore.login(formData)
         router.push(redirectUrl.value)
-    } catch {
+    } finally {
         loading.value = false
     }
 }

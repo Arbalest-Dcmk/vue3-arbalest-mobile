@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
+import { useTitle } from '@/hooks/useTitle'
 import { defineComponent } from 'vue'
 export default defineComponent({
-    name: 'App'
+    name: 'App',
+    setup() {
+        useTitle()
+    }
 })
 </script>
-<style lang="scss" scoped>
-.van-config-provider {
-    height: 100%;
-}
-</style>
+<style lang="scss" scoped></style>
