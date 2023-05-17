@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { Toast } from 'vant'
+import { showToast } from 'vant'
 
 export function useValidate(el: Ref) {
     const doValidate = async () => {
@@ -8,7 +8,7 @@ export function useValidate(el: Ref) {
             return true
         } catch (err: any) {
             const { message } = err[0] ?? {}
-            message && Toast(message)
+            message && showToast(message)
         }
     }
 

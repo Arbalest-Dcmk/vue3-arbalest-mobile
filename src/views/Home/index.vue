@@ -13,13 +13,12 @@
 </template>
 
 <script lang="ts" setup name="Home">
-import { lineOption } from '@/components/Chart/options'
+import options from '@/components/Chart/options'
 import Chart from '@/components/Chart/index.vue'
-import { cloneDeep } from 'lodash'
 
 const chartOptions = reactive({
-    lineOne: { ...cloneDeep(lineOption), title: { text: 'Chart 1' } },
-    lineTwo: { ...cloneDeep(lineOption), title: { text: 'Chart 2' } }
+    lineOne: { ...options.lineOption(), title: { text: 'Chart 1' } },
+    lineTwo: { ...options.lineOption(), title: { text: 'Chart 2' } }
 })
 
 const updateChart = () => {

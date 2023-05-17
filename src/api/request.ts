@@ -1,8 +1,13 @@
-import axios, { AxiosRequestConfig, Canceler } from 'axios'
+import axios, {
+    AxiosRequestConfig,
+    AxiosRequestHeaders,
+    InternalAxiosRequestConfig,
+    Canceler
+} from 'axios'
 import config, { TOKEN_KEY } from '@/config'
 import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
-import { Toast, Dialog } from 'vant'
+import { showToast, Dialog } from 'vant'
 import { useUserStore } from '@/store/user'
 const userStore = useUserStore()
 
@@ -32,7 +37,7 @@ const errorHandle = (code: number, message: string) => {
             }
         })
     } else {
-        Toast(message || '请求失败，请检查网络')
+        showToast(message || '请求失败，请检查网络')
     }
 }
 
@@ -59,13 +64,13 @@ const request = (cfg: RequestExtraConfig) => {
 
     // 请求拦截
     service.interceptors.request.use(
-        (config: AxiosRequestConfig) => {
+        (config: InternalAxiosRequestConfig) => {
             config.cancelToken = createCanceler(config)
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
                     [TOKEN_KEY]: userStore.token
-                }
+                } as AxiosRequestHeaders
             }
             if (extraConfig.paramsTransform) {
                 config.data = camelToSnake(config.data)

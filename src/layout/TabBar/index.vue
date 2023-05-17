@@ -20,13 +20,16 @@ const permissionStore = usePermissionStore()
 
 const tabBarRoutes = computed(() =>
     permissionStore.routes
-        .flatMap((item: RouteRecordRaw) => [
-            item,
-            ...(item.children?.map((child: RouteRecordRaw) => ({
-                ...child,
-                meta: { ...child.meta, to: path.resolve(item.path, child.path) }
-            })) ?? [])
-        ])
+        .flatMap(
+            (item: RouteRecordRaw) =>
+                <RouteRecordRaw[]>[
+                    item,
+                    ...(item.children?.map((child: RouteRecordRaw) => ({
+                        ...child,
+                        meta: { ...child.meta, to: path.resolve(item.path, child.path) }
+                    })) ?? [])
+                ]
+        )
         .filter(item => item.meta?.isTabBar)
 )
 </script>
