@@ -9,7 +9,6 @@ import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
 import { showToast, Dialog } from 'vant'
 import { useUserStore } from '@/store/user'
-const userStore = useUserStore()
 
 // 取消请求
 const cancelerMap = new Map<string, Canceler>()
@@ -28,7 +27,7 @@ const removeAllCanceler = () => {
 const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
-        userStore.logout()
+        useUserStore().logout()
         Dialog.alert({
             message: '登录失效，请重新登录'
         }).then(() => {
@@ -69,7 +68,7 @@ const request = (cfg: RequestExtraConfig) => {
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
-                    [TOKEN_KEY]: userStore.token
+                    [TOKEN_KEY]: useUserStore().token
                 } as AxiosRequestHeaders
             }
             if (extraConfig.paramsTransform) {
